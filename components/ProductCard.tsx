@@ -67,9 +67,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <>
-      <div className="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-200">
+      <div className="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden hover:border-slate-600 transition-all duration-200">
         {product.image && (
-          <div className="h-48 bg-gray-100 overflow-hidden">
+          <div className="h-48 bg-slate-900 overflow-hidden">
             <img
               src={product.image}
               alt={product.product_name}
@@ -80,38 +80,38 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className="p-5 space-y-4">
           <div>
             <div className="flex items-start justify-between gap-2">
-              <h3 className="text-lg font-bold text-gray-900 line-clamp-2">
+              <h3 className="text-lg font-bold text-white line-clamp-2">
                 {product.product_name}
               </h3>
-              <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full whitespace-nowrap">
+              <span className="px-2 py-1 bg-blue-900/50 text-blue-300 text-xs font-semibold rounded-full whitespace-nowrap border border-blue-800">
                 {product.product_type}
               </span>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            <div className="bg-green-50 rounded-lg p-3">
-              <p className="text-xs text-gray-600 mb-1">Price</p>
-              <p className="text-lg font-bold text-green-700">
+            <div className="bg-green-950/50 border border-green-900 rounded-md p-3">
+              <p className="text-xs text-slate-400 mb-1">Price</p>
+              <p className="text-lg font-bold text-green-400">
                 ${displayPrice.toFixed(2)}
-                <span className="text-xs font-normal text-gray-600"> /KG</span>
+                <span className="text-xs font-normal text-slate-400"> /KG</span>
               </p>
               {product.price_modified && (
-                <p className="text-xs text-gray-500 line-through">
+                <p className="text-xs text-slate-500 line-through">
                   ${product.price_predicted.toFixed(2)}
                 </p>
               )}
             </div>
-            <div className="bg-purple-50 rounded-lg p-3">
-              <p className="text-xs text-gray-600 mb-1">In Stock</p>
-              <p className="text-lg font-bold text-purple-700">
+            <div className="bg-purple-950/50 border border-purple-900 rounded-md p-3">
+              <p className="text-xs text-slate-400 mb-1">In Stock</p>
+              <p className="text-lg font-bold text-purple-400">
                 {product.quantity}
-                <span className="text-xs font-normal text-gray-600"> units</span>
+                <span className="text-xs font-normal text-slate-400"> units</span>
               </p>
             </div>
           </div>
 
-          <div className="text-xs text-gray-500">
+          <div className="text-xs text-slate-500">
             Added: {new Date(product.date_added).toLocaleDateString()}
           </div>
 
@@ -144,11 +144,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       >
         <div className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-slate-300 mb-2">
               Price ($/KG)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
                 $
               </span>
               <input
@@ -158,11 +158,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 value={newPrice}
                 onChange={(e) => setNewPrice(parseFloat(e.target.value) || 0)}
                 onBlur={handleUpdatePrice}
-                className="w-full pl-8 pr-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-8 pr-4 py-2 border-2 border-slate-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-700 text-white"
               />
             </div>
             {product.price_predicted !== newPrice && (
-              <p className="mt-1 text-sm text-gray-500">
+              <p className="mt-1 text-sm text-slate-400">
                 Original prediction: ${product.price_predicted.toFixed(2)}
               </p>
             )}

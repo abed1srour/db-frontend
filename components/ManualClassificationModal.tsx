@@ -35,7 +35,7 @@ export const ManualClassificationModal: React.FC<ManualClassificationModalProps>
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Manual Product Classification">
       <div className="space-y-4">
-        <p className="text-gray-600">
+        <p className="text-slate-400">
           Enter the product details manually if the automatic classification was not accurate.
         </p>
         <Input

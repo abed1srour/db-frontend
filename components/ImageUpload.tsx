@@ -76,19 +76,45 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
       />
       
       {preview ? (
-        <div className="space-y-4">
-          <div className="relative rounded-lg overflow-hidden border-2 border-gray-200">
-            <img
-              src={preview}
-              alt="Preview"
-              className="w-full h-auto max-h-96 object-contain bg-gray-50"
-            />
+        <div className="space-y-3 animate-fadeIn">
+          <div className="relative rounded-lg overflow-hidden border-2 border-slate-600 bg-slate-700 p-4">
+            <div className="relative rounded overflow-hidden bg-slate-900 border border-slate-600">
+              <img
+                src={preview}
+                alt="Preview"
+                className="w-full h-auto max-h-[400px] object-contain"
+              />
+            </div>
           </div>
-          <div className="flex gap-2">
-            <Button onClick={handleClick} variant="outline" className="flex-1">
+          <div className="grid grid-cols-2 gap-3">
+            <Button 
+              onClick={handleClick} 
+              variant="outline" 
+              className="flex items-center justify-center gap-2"
+            >
+              <svg 
+                className="w-4 h-4" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
               Change Image
             </Button>
-            <Button onClick={handleRemove} variant="danger" className="flex-1">
+            <Button 
+              onClick={handleRemove} 
+              variant="danger" 
+              className="flex items-center justify-center gap-2"
+            >
+              <svg 
+                className="w-4 h-4" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
               Remove
             </Button>
           </div>
@@ -100,16 +126,16 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           className={`
-            border-2 border-dashed rounded-lg p-12 text-center cursor-pointer
+            relative border-2 border-dashed rounded-lg p-12 text-center cursor-pointer
             transition-all duration-200
             ${isDragging 
-              ? 'border-blue-500 bg-blue-50' 
-              : 'border-gray-300 hover:border-gray-400 hover:bg-gray-50'
+              ? 'border-blue-500 bg-blue-950/50' 
+              : 'border-slate-600 hover:border-slate-500 hover:bg-slate-800/50'
             }
           `}
         >
           <svg
-            className="mx-auto h-16 w-16 text-gray-400 mb-4"
+            className={`mx-auto h-16 w-16 mb-4 transition-colors ${isDragging ? 'text-blue-400' : 'text-slate-500'}`}
             stroke="currentColor"
             fill="none"
             viewBox="0 0 48 48"
@@ -121,10 +147,10 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
               strokeLinejoin="round"
             />
           </svg>
-          <p className="text-lg font-medium text-gray-700 mb-2">
+          <p className={`text-base font-medium mb-1 transition-colors ${isDragging ? 'text-blue-300' : 'text-slate-300'}`}>
             {isDragging ? 'Drop image here' : 'Click to upload or drag and drop'}
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-slate-400">
             PNG, JPG, GIF up to 10MB
           </p>
         </div>

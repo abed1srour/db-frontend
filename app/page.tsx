@@ -189,36 +189,36 @@ export default function Home() {
   const canAddToInventory = currentStep === 'price' && finalPrice > 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-slate-900">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <header className="bg-slate-800 border-b-2 border-slate-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">
+              <h1 className="text-2xl font-bold text-white">
                 Smart Inventory System
               </h1>
-              <p className="mt-1 text-sm text-gray-600">
+              <p className="mt-1 text-sm text-slate-400">
                 AI-Powered Product Management
               </p>
             </div>
-            <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
+            <div className="flex items-center gap-1 bg-slate-700 rounded-md p-1 border border-slate-600">
               <button
                 onClick={() => setActiveTab('upload')}
-                className={`px-6 py-2 rounded-md font-medium transition-all ${
+                className={`px-5 py-2 rounded font-medium transition-colors text-sm ${
                   activeTab === 'upload'
-                    ? 'bg-white text-blue-600 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'bg-blue-600 text-white border border-blue-500'
+                    : 'text-slate-300 hover:text-white'
                 }`}
               >
                 Add Product
               </button>
               <button
                 onClick={() => setActiveTab('inventory')}
-                className={`px-6 py-2 rounded-md font-medium transition-all ${
+                className={`px-5 py-2 rounded font-medium transition-colors text-sm ${
                   activeTab === 'inventory'
-                    ? 'bg-white text-blue-600 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'bg-blue-600 text-white border border-blue-500'
+                    : 'text-slate-300 hover:text-white'
                 }`}
               >
                 Inventory
@@ -233,7 +233,7 @@ export default function Home() {
         {activeTab === 'upload' ? (
           <div className="max-w-4xl mx-auto space-y-6">
             {/* Progress Steps */}
-            <div className="flex items-center justify-center gap-2 mb-8">
+            <div className="flex items-center justify-center gap-2 mb-6">
               {['Upload', 'Classify', 'Price', 'Add'].map((step, index) => {
                 const stepMap: { [key: string]: WorkflowStep } = {
                   Upload: 'upload',
@@ -252,17 +252,17 @@ export default function Home() {
                   <React.Fragment key={step}>
                     <div className="flex flex-col items-center">
                       <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all ${
+                        className={`w-9 h-9 rounded-full flex items-center justify-center font-semibold text-sm transition-colors border-2 ${
                           isActive
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-300 text-gray-600'
-                        } ${isCurrent ? 'ring-4 ring-blue-200' : ''}`}
+                            ? 'bg-blue-600 text-white border-blue-500'
+                            : 'bg-slate-800 text-slate-500 border-slate-600'
+                        } ${isCurrent ? 'ring-2 ring-blue-500 ring-offset-2 ring-offset-slate-900' : ''}`}
                       >
                         {index + 1}
                       </div>
                       <span
-                        className={`text-xs mt-1 font-medium ${
-                          isActive ? 'text-gray-900' : 'text-gray-500'
+                        className={`text-xs mt-1.5 font-medium ${
+                          isActive ? 'text-slate-200' : 'text-slate-500'
                         }`}
                       >
                         {step}
@@ -270,8 +270,8 @@ export default function Home() {
                     </div>
                     {index < 3 && (
                       <div
-                        className={`w-16 h-1 mt-[-20px] transition-all ${
-                          stepIndex < currentIndex ? 'bg-blue-600' : 'bg-gray-300'
+                        className={`w-12 h-0.5 mt-[-20px] transition-colors ${
+                          stepIndex < currentIndex ? 'bg-blue-600' : 'bg-slate-700'
                         }`}
                       />
                     )}
@@ -281,27 +281,43 @@ export default function Home() {
             </div>
 
             {/* Upload Section */}
-            <Card title="Upload Product Image" className="bg-white">
+            <Card title="Upload Product Image" className="bg-slate-800">
               <ImageUpload
                 onImageSelect={handleImageSelect}
                 currentImage={imagePreview}
               />
               {canClassify && (
-                <div className="mt-6 flex gap-3">
+                <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <Button
                     onClick={handleClassifyImage}
                     isLoading={isClassifying}
-                    className="flex-1"
+                    className="flex items-center justify-center gap-2"
                     size="lg"
                   >
+                    <svg 
+                      className="w-4 h-4" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
                     Classify Image
                   </Button>
                   <Button
                     onClick={() => setShowManualModal(true)}
                     variant="outline"
-                    className="flex-1"
+                    className="flex items-center justify-center gap-2"
                     size="lg"
                   >
+                    <svg 
+                      className="w-4 h-4" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
                     Manual Entry
                   </Button>
                 </div>
@@ -338,10 +354,10 @@ export default function Home() {
 
             {/* Success Message */}
             {currentStep === 'complete' && (
-              <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
+              <Card className="bg-slate-800 border-green-900">
                 <div className="text-center py-8">
                   <svg
-                    className="mx-auto h-16 w-16 text-green-600 mb-4"
+                    className="mx-auto h-14 w-14 text-green-500 mb-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -353,10 +369,10 @@ export default function Home() {
                       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-xl font-bold text-white mb-2">
                     Product Added Successfully!
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-sm text-slate-400">
                     Redirecting to upload page...
                   </p>
                 </div>
@@ -392,27 +408,31 @@ export default function Home() {
         title="Product Already Exists"
       >
         {existingProduct && (
-          <div className="space-y-6">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <p className="text-blue-900 font-medium mb-2">
+          <div className="space-y-5">
+            <div className="bg-blue-950/50 border-2 border-blue-900 rounded-md p-4">
+              <p className="text-blue-300 font-semibold mb-3 text-sm">
                 This product is already in your inventory:
               </p>
               <div className="space-y-2 text-sm">
-                <p>
-                  <span className="font-semibold">Name:</span> {existingProduct.product_name}
+                <p className="flex justify-between">
+                  <span className="text-slate-400">Name:</span>
+                  <span className="font-semibold text-white">{existingProduct.product_name}</span>
                 </p>
-                <p>
-                  <span className="font-semibold">Current Stock:</span> {existingProduct.quantity} units
+                <p className="flex justify-between">
+                  <span className="text-slate-400">Current Stock:</span>
+                  <span className="font-semibold text-white">{existingProduct.quantity} units</span>
                 </p>
-                <p>
-                  <span className="font-semibold">Price:</span> $
-                  {(existingProduct.price_modified || existingProduct.price_predicted).toFixed(2)} /KG
+                <p className="flex justify-between">
+                  <span className="text-slate-400">Price:</span>
+                  <span className="font-semibold text-white">
+                    ${(existingProduct.price_modified || existingProduct.price_predicted).toFixed(2)} /KG
+                  </span>
                 </p>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-slate-300 mb-2">
                 How many units would you like to add?
               </label>
               <QuantityManager
@@ -422,20 +442,20 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 pt-2">
               <Button
                 onClick={handleProceedToNew}
                 variant="outline"
                 className="flex-1"
               >
-                Add as New Product
+                Add as New
               </Button>
               <Button
                 onClick={handleAddToExisting}
                 className="flex-1"
                 isLoading={isAddingProduct}
               >
-                Add to Existing ({quantity} units)
+                Add {quantity} units
               </Button>
             </div>
           </div>
